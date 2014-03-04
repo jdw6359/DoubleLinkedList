@@ -24,11 +24,32 @@ int main(int argc, char *argv[]){
 		}else{
 			/* File was opened properly, perform calculations */
 
-			/* Initialize int to keep track of location in file */
-			int location;
+			/* Declare int to keep track of location in file */
+			int position=0;
 
-			/* Initialize char array pointer to hold text */
-			char *word;
+			/* Declare char array pointer to hold text */
+			char word[99];
+
+			/* Declare LinkedLists variable */
+			LinkedLists list;
+
+			/* Initialize Doubly Linked List with associated */
+			InitLinkedList(&list);
+
+			/* Loop through file while there is input */
+			while(fscanf(inputFile, "%s", word)==1){
+
+				/* Declare MyData variable */
+				MyData *data=(MyData *)malloc(sizeof(MyData));
+
+				data->word=word;
+				data->position=position;
+
+				position++;
+			}
+
+
+
 
 
 
