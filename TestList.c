@@ -15,6 +15,7 @@ int main(int argc, char *argv[]){
 	InitLinkedList(&LinkedList);
 
 
+	RemoveFromFrontOfLinkedList(&LinkedList);
 
 	MyData *data1=(MyData *)malloc(sizeof(MyData));
 	data1->position=0;
@@ -30,6 +31,9 @@ int main(int argc, char *argv[]){
 	data3->position=2;
 	data3->word="Danny";
 	AddToBackOfLinkedList(&LinkedList, data3);
+
+
+	RemoveFromFrontOfLinkedList(&LinkedList);
 
 	printf("testing front of list\n");
 	LinkedListNodes	*testnode=LinkedList.FrontPtr;

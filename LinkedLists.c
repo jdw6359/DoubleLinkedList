@@ -123,21 +123,43 @@ void AddToBackOfLinkedList(LinkedLists *ListPtr, MyData *DataPtr){
 
 MyData *RemoveFromFrontOfLinkedList(LinkedLists *ListPtr){
 
-	printf("Remove Fron Front Of List Called!\n");
+	printf("Remove From Front Of List Called!\n");
 
-	/* Get Pointer to front node */
+	/* Declare pointer to linked list node */
+	LinkedListNodes *NodePtr;
 
-	/* Return NULL if front node is empty */
+	/* Declare a pointer to list element to be returned */
+	MyData *DataPtr;
 
+	/* Assign pointer to node being removed */
+	NodePtr=ListPtr->FrontPtr;
 
+	/* Check to see if the Front of the list is nulll */
+	if(NodePtr==NULL){
 
-	/* Get temp pointer to front's next */
+		/* No elements can be removed, return null */
+		return NULL;
 
-	/* Set List's front to temp node */
+	}else{
 
-	/* Set temp's previous to null */
+		/* Assign dataptr to the data being removed and returned */
+		DataPtr=NodePtr->Payload;
 
+		/* Set the front pointer to the next element in the list */
+		ListPtr->FrontPtr=NodePtr->Next;
 
+		/* Detatch the node being removed from the front of the list */
+		ListPtr->FrontPtr->Previous=NULL;
+
+		free(NodePtr);
+
+		ListPtr->NumElements--;
+
+		return DataPtr;
+
+	}
+
+	printf("Remove From Front Of List Ended!\n");
 }
 
 MyData *RemoveFromBackOfLinkedList(LinkedLists *ListPtr){
