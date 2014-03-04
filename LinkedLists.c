@@ -148,8 +148,15 @@ MyData *RemoveFromFrontOfLinkedList(LinkedLists *ListPtr){
 		/* Set the front pointer to the next element in the list */
 		ListPtr->FrontPtr=NodePtr->Next;
 
-		/* Detatch the node being removed from the front of the list */
-		ListPtr->FrontPtr->Previous=NULL;
+		if(ListPtr->FrontPtr==NULL){
+			/* Do nothing, cannot set attribute of NULL */
+
+		}else{
+
+			/* Detatch the node from being removed from the front of the list */
+			ListPtr->FrontPtr->Previous=NULL;
+		}
+
 
 		free(NodePtr);
 
