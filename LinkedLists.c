@@ -148,6 +148,7 @@ MyData *RemoveFromFrontOfLinkedList(LinkedLists *ListPtr){
 		/* Set the front pointer to the next element in the list */
 		ListPtr->FrontPtr=NodePtr->Next;
 
+		/* Check to see if the new front of the list is null */
 		if(ListPtr->FrontPtr==NULL){
 			/* Do nothing, cannot set attribute of NULL */
 
@@ -157,11 +158,13 @@ MyData *RemoveFromFrontOfLinkedList(LinkedLists *ListPtr){
 			ListPtr->FrontPtr->Previous=NULL;
 		}
 
-
+		/* Free the node previously at the front of the list */
 		free(NodePtr);
 
+		/* Decrement the number of elements in the list */
 		ListPtr->NumElements--;
 
+		/* Return pointer to the data */
 		return DataPtr;
 
 	}
@@ -170,6 +173,56 @@ MyData *RemoveFromFrontOfLinkedList(LinkedLists *ListPtr){
 }
 
 MyData *RemoveFromBackOfLinkedList(LinkedLists *ListPtr){
+
+	printf("Remove From Back Of List Called!\n");
+
+	/* Declare pointer to linked list node */
+	LinkedListNodes *NodePtr;
+
+	/* Declare a pointer to list element to be returned */
+	MyData *DataPtr;
+
+	/* Assign pointer to node being removed */
+	NodePtr=ListPtr->BackPtr;
+
+	/* Check to see if the Back of the list is null */
+	if(NodePtr==NULL){
+
+		/* No elements can be removed, return null */
+		return NULL;
+
+	}else{
+
+		/* Assign dataptr to the data being removed and returned */
+		DataPtr=NodePtr->Payload;
+
+		/* Set the back pointer to the previous element in the list */
+		ListPtr->BackPtr=NodePtr->Previous;
+
+		/* Check to see if new back node is null */
+		if(ListPtr->BackPtr==NULL){
+			/* Do nothing, cannot set attribute of NULL */
+
+		}else{
+
+			/* Detatch the node from being removed from the back of the list */
+			ListPtr->BackPtr->Next=NULL;
+		}
+
+		/* Free the node previously at the back of the list */
+		free(NodePtr);
+
+		/* Decrement the number of items in the list */
+		ListPtr->NumElements--;
+
+		/* Return pointer to data */
+		return DataPtr;
+
+	}
+
+	printf("Remove From Back Of List Ended!\n");
+
+
 
 }
 
