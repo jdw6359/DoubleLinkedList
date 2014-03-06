@@ -6,8 +6,6 @@
 
 void InitLinkedList(LinkedLists *ListPtr){
 
-	printf("Init Linked List Called!\n");
-
 	/* Set NumElements to zero */
 	ListPtr-> NumElements=0;
 
@@ -17,12 +15,9 @@ void InitLinkedList(LinkedLists *ListPtr){
 	/* Set BackPtr to Null */
 	ListPtr->BackPtr=NULL;
 
-	printf("Init Linked List Ended!\n");
 }
 
 void AddToFrontOfLinkedList(LinkedLists *ListPtr, MyData *DataPtr){
-
-	printf("Add To Front of LinkedList Called!\n");
 
 	/* Create LinkedList Node */
 	LinkedListNodes *node=(LinkedListNodes *)malloc(sizeof(LinkedListNodes));
@@ -30,10 +25,10 @@ void AddToFrontOfLinkedList(LinkedLists *ListPtr, MyData *DataPtr){
 	/* Set node payload pointer to DataPtr */
 	node->Payload=DataPtr;
 
+
+
 	/* Check to see if the Linked List is empty */
 	if(ListPtr->NumElements==0){
-
-		printf("Adding element to empty list!\n");
 
 		/* Set both front and back pointers to the new element */
 		ListPtr->FrontPtr=node;
@@ -43,8 +38,6 @@ void AddToFrontOfLinkedList(LinkedLists *ListPtr, MyData *DataPtr){
 		node->Next=NULL;
 
 	}else{
-
-		printf("Adding element to non empty list!\n");
 
 		/* Get a temporary handle on the previous head */
 		LinkedListNodes *TempNode=ListPtr->FrontPtr;
@@ -66,13 +59,10 @@ void AddToFrontOfLinkedList(LinkedLists *ListPtr, MyData *DataPtr){
 	/* Increment the number of elements in the list */
 	ListPtr->NumElements++;
 
-	printf("Add to Front Of LinkedList Ended!\n");
 }
 
 
 void AddToBackOfLinkedList(LinkedLists *ListPtr, MyData *DataPtr){
-
-	printf("Add To Back Of LinkedList Called!\n");
 
 	/* Create LinkedList Node */
 	LinkedListNodes *node=(LinkedListNodes *)malloc(sizeof(LinkedListNodes));
@@ -82,8 +72,6 @@ void AddToBackOfLinkedList(LinkedLists *ListPtr, MyData *DataPtr){
 
 	if(ListPtr->NumElements==0){
 
-		printf("Adding element to empty list\n");
-
 		/* Set both the front and back list pointers to the new element */
 		ListPtr->FrontPtr=node;
 		ListPtr->BackPtr=node;
@@ -92,8 +80,6 @@ void AddToBackOfLinkedList(LinkedLists *ListPtr, MyData *DataPtr){
 		node->Next=NULL;
 
 	}else{
-
-		printf("Adding element to non-empty list\n");
 
 		/* Get a temporary pointer to the old back of list */
 		LinkedListNodes *TempNode=ListPtr->BackPtr;
@@ -115,15 +101,12 @@ void AddToBackOfLinkedList(LinkedLists *ListPtr, MyData *DataPtr){
 	/* Increment the number of elements in the linked list */
 	ListPtr->NumElements++;
 
-	printf("Add To Back Of LinkedList Complete!\n");
-
 }
 
 
 
 MyData *RemoveFromFrontOfLinkedList(LinkedLists *ListPtr){
 
-	printf("Remove From Front Of List Called!\n");
 
 	/* Declare pointer to linked list node */
 	LinkedListNodes *NodePtr;
@@ -163,6 +146,8 @@ MyData *RemoveFromFrontOfLinkedList(LinkedLists *ListPtr){
 
 		/* Decrement the number of elements in the list */
 		ListPtr->NumElements--;
+
+		printf("%s\n", DataPtr->word);
 
 		/* Return pointer to the data */
 		return DataPtr;

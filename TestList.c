@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
 #include "LinkedLists.h"
 
 
@@ -24,11 +26,13 @@ int main(int argc, char *argv[]){
 		}else{
 			/* File was opened properly, perform calculations */
 
+			printf("\nGenerating List...\n");
+
+			/* Declare a looping variable */
+			int looper=0;
+
 			/* Declare int to keep track of location in file */
 			int position=0;
-
-			/* Declare char array pointer to hold text */
-			char word[99];
 
 			/* Declare LinkedLists variable */
 			LinkedLists list;
@@ -36,25 +40,87 @@ int main(int argc, char *argv[]){
 			/* Initialize Doubly Linked List with associated */
 			InitLinkedList(&list);
 
-			/* Loop through file while there is input */
-			while(fscanf(inputFile, "%s", word)==1){
+			/* Declare variable to determine to continue scanning */
+			int continueScan =1;
 
-				/* Declare MyData variable */
-				MyData *data=(MyData *)malloc(sizeof(MyData));
+			while(continueScan==1){
 
-				data->word=word;
-				data->position=position;
+				/* declare char array */
+				char newWord[99];
 
-				position++;
+				/* scan, assign, and check for newWord */
+				if(fscanf(inputFile, "%s", newWord)==1){
+
+					/* Allocate memory for data node */
+					MyData *data=(MyData *)malloc(sizeof(MyData));
+
+					/* Allocate memory inside data node for string */
+					data->word=(char *)malloc(99);
+
+					/* Copy scanned word into space in data node */
+					strcpy(data->word, newWord);
+
+					/* Set position of data node */
+					data->position=position;
+
+					/* Add node to back of list */
+					AddToBackOfLinkedList(&list, data);
+
+					/* Increment position */
+					position++;
+
+				}else{
+					/* Scan was not successful, done reading from file */
+
+					continueScan=0;
+				}
+
+			}
+			/* end scanning */
+
+			printf("List Generated!\n");
+
+			/* Declare a pointer to LinkedListNode */
+			LinkedListNodes *node=(LinkedListNodes *)malloc(sizeof(LinkedListNodes));
+
+			/* Declare a pointer to MyData */
+			MyData *dataElement=(MyData *)malloc(sizeof(MyData));
+
+			/* set node equal to front of list */
+			node=list.FrontPtr;
+
+			printf("\nDisplaying Contents Of First Four List Nodes!\n\n");
+
+			for(looper=0;looper<4;looper++){
+
+				/* Set dataElement equal to the data we are storing in this node */
+				dataElement=node->Payload;
+
+				printf("%s is at position %d in the list.\n",dataElement->word, dataElement->position);
+
+				/* Move to the next node */
+				node=node->Next;
+
 			}
 
+			/* Set LinkedList Node equal to back of list */
+			node=list.BackPtr;
 
+			printf("\nDisplaying Contents of Last Four List Nodes!\n\n");
 
+			for(looper=0;looper<4;looper++){
 
+				/* Set dataElement equal to the data we are storing in this node */
+				dataElement=node->Payload;
 
+				printf("%s is at position %d in the list.\n", dataElement->word, dataElement->position);
+
+				/* Move to the previous node */
+				node=node->Previous;
+
+			}
 
 		}/* End check for successful opening of file */
-
 
 	}else{
 
@@ -69,53 +135,4 @@ int main(int argc, char *argv[]){
 	return 0;
 
 }
-/*
-	InitLinkedList(&LinkedList);
-
-
-	MyData *data1=(MyData *)malloc(sizeof(MyData));
-	data1->position=0;
-	data1->word="Josh";
-	AddToBackOfLinkedList(&LinkedList, data1);
-
-	MyData *data2=(MyData *)malloc(sizeof(MyData));
-	data2->position=1;
-	data2->word="Courtney";
-	AddToBackOfLinkedList(&LinkedList, data2);
-
-	MyData *data3=(MyData *)malloc(sizeof(MyData));
-	data3->position=2;
-	data3->word="Danny";
-	AddToBackOfLinkedList(&LinkedList, data3);
-
-	printf("Contents at back of list\n");
-	LinkedListNodes	*testnode=LinkedList.BackPtr;
-	printf("Position %d\n",testnode->Payload->position);
-	printf("Word: %s\n", testnode->Payload->word);
-	printf("Number of elements %d\n\n", LinkedList.NumElements);
-
-	RemoveFromBackOfLinkedList(&LinkedList);
-
-	printf("Contents at back of list\n");
-	testnode=LinkedList.BackPtr;
-	printf("Position %d\n", testnode->Payload->position);
-	printf("Word: %s\n", testnode->Payload->word);
-	printf("Number of elements %d\n\n", LinkedList.NumElements);
-
-	RemoveFromBackOfLinkedList(&LinkedList);
-
-	printf("Contents at back of list\n");
-	testnode=LinkedList.BackPtr;
-	printf("Position %d\n", testnode->Payload->position);
-	printf("Word: %s\n", testnode->Payload->word);
-	printf("Number of elements %d\n\n", LinkedList.NumElements);
-
-	RemoveFromBackOfLinkedList(&LinkedList);
-
-	testnode=LinkedList.FrontPtr;
-	if(testnode==NULL){
-		printf("List is empty!\n");
-		printf("Number of elements %d\n\n", LinkedList.NumElements);
-	}*/
-	/* Add Data Point to the front of the List */
 
