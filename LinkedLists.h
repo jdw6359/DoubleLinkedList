@@ -77,4 +77,11 @@ MyData *RemoveFromBackOfLinkedList(LinkedLists *ListPtr);
 ******************************************************************************/
 void DestroyLinkedList(LinkedLists *ListPtr);
 
+/******************************************************************************
+* Iterate through provided list and confirm / deny that word's existance
+* in the doubly linked list
+******************************************************************************/
+void SearchList(LinkedLists *ListPtr, char *searchWord);
+
+
 #endif /* _LINKED_LISTS_H_ */

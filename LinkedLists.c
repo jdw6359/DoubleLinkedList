@@ -216,3 +216,35 @@ void DestroyLinkedList(LinkedLists *ListPtr){
 
 }
 
+
+void SearchList(LinkedLists *ListPtr, char *searchWord){
+	printf("Search List called!\n");
+
+	/* Allocate memory for node variable */
+	LinkedListNodes *node=(LinkedListNodes *)malloc(sizeof(LinkedListNodes));
+
+	/* Allocate memory for node payload */
+	MyData *data=(MyData *)malloc(sizeof(MyData));
+
+	/* Set node equal to the front of the list */
+	node=ListPtr->FrontPtr;
+
+	while(node!=NULL){
+
+		data=node->Payload;
+
+		if(data->word==searchWord){
+
+			printf("Match\n");
+
+		}
+
+
+		node=node->Next;
+	}
+
+
+
+
+}
+

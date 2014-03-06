@@ -1,7 +1,10 @@
-all :hw3_c
+all :TestList TestSearch
 
-hw3_c:TestList.o LinkedLists.o
-	gcc TestList.o LinkedLists.o -o hw3_c
+TestList:TestList.o LinkedLists.o
+	gcc TestList.o LinkedLists.o -o TestList
+
+TestSearch:TestSearch.o LinkedLists.o
+	gcc TestSearch.o LinkedLists.o -o TestSearch
 
 LinkedLists.o: LinkedLists.c
 	gcc -c LinkedLists.c
