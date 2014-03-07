@@ -78,6 +78,9 @@ int main(int argc, char *argv[]){
 			}
 			/* end scanning */
 
+			/* The number of nodes in the list is <position> + 1 */
+			printf("There are %d words in the input file\n",(position+1));
+
 			printf("List Generated!\n");
 
 			/* Declare a pointer to LinkedListNode */

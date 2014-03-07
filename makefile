@@ -9,7 +9,5 @@ TestSearch:TestSearch.o LinkedLists.o
 LinkedLists.o: LinkedLists.c
 	gcc -c LinkedLists.c
 
-TestList.o: TestList.c
-	gcc -c  TestList.c 
 
 

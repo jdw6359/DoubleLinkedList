@@ -218,7 +218,8 @@ void DestroyLinkedList(LinkedLists *ListPtr){
 
 
 void SearchList(LinkedLists *ListPtr, char *searchWord){
-	printf("Search List called!\n");
+
+	printf("\nSearching for word <%s> in the list....\n", searchWord);
 
 	/* Allocate memory for node variable */
 	LinkedListNodes *node=(LinkedListNodes *)malloc(sizeof(LinkedListNodes));
@@ -229,22 +230,29 @@ void SearchList(LinkedLists *ListPtr, char *searchWord){
 	/* Set node equal to the front of the list */
 	node=ListPtr->FrontPtr;
 
+	/* Variable set to 1 if there is a match */
+	int matched=0;
+
+	/* Move throught the list until the node is null */
 	while(node!=NULL){
 
+		/* Set data equal to the current node's payload */
 		data=node->Payload;
 
-		if(data->word==searchWord){
+		/* compare the current word with the word being searched for */
+		if(strcmp(data->word, searchWord)==0){
 
-			printf("Match\n");
-
+			printf("Word <%s> found in position #%d of the list\n", searchWord, data->position);
+			matched=1;
 		}
 
-
+		/* Advance the node to the next node in the list */
 		node=node->Next;
 	}
 
-
-
-
+	/* Match was never found and match was never set to 1, alert user */
+	if(matched==0){
+		printf("Word <%s> not found in the list\n", searchWord);
+	}
 }
 
